@@ -85,3 +85,11 @@ data： 所携带的前端需要的数据
 flask编写restful：https://blog.csdn.net/chenmozhe22/article/details/82347813
 
 vue教程：https://www.runoob.com/vue2/vue-tutorial.html
+
+
+
+### 4.5步骤
+
+后台提供数据接口， 接口实现。
+
+前台请求获取数据，并解析填充。
