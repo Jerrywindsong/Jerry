@@ -38,19 +38,50 @@ data： 所携带的前端需要的数据
 
 
 
-## 4. Flask框架前后端交互
+## 4. 前后端交互
 
-1.后台安装flask库： pip install flask
+### 4.1 技术栈
 
-2.前端使用fly 和 vue框架获取后台数据 axios进行网络请求，vue起到模板设置作用。
+前端： vue.js + axios    vue 模板渲染 axios网络请求
 
-```html
-<script src="https://unpkg.com/flyio/dist/fly.min.js"></script>
-<script src="https://cdn.staticfile.org/axios/0.18.0/axios.min.js"></script>
-```
+后台：flask（python） servlet（java）
 
-restful接口 
+数据存储：mysql
 
-对于后台：返回的是json格式的对象
 
-对于前台：解析json对象 首先发送request，设置网页值
+
+### 4.2 节点结构
+
+一共是5个节点，假设每个服务器节点ip分别为
+
+1.1.1.1 后端用户功能
+
+2.2.2.2 前端用户功能
+
+3.3.3.3 前端管理功能
+
+4.4.4.4 后端管理功能
+
+5.5.5.5 数据存储 mysql和图片所在服务器 身份认证服务器
+
+
+
+### 4.3 可能遇到的问题及解决方案
+
+1）后端应当返回怎样格式的数据，怎么返回？
+
+2）前端如何去获取后端返回的数据，怎么解析？
+
+3）如何解决浏览器禁止跨域访问的问题？
+
+4）如何保存用户会话状态，进行身份认证？（单点登录）
+
+5）图片传输问题，如何上传下载图片？
+
+
+
+### 4.4 前后端分离参考资料
+
+flask编写restful：https://blog.csdn.net/chenmozhe22/article/details/82347813
+
+vue教程：https://www.runoob.com/vue2/vue-tutorial.html
