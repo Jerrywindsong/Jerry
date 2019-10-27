@@ -31,13 +31,14 @@
         </tr>
     </table>
 
+
     <div id="set_user">
         <input type="text" v-model="name">
         <input type="text" v-model="age">
         <input type="text" v-model="sex">
         <input type="text" v-model="identify">
 
-        <button @click="set_user()">提交</button>
+        <button  @click="set_user()"> 提交 </button>
     </div>
 
     <script>
@@ -61,29 +62,34 @@
         });
 
         var vm2 = new Vue({
-           el: '#set_user',
-           data: {
-               name: '',
-               age: 0,
-               sex: '',
-               identify: ''
-           },
-           methods: {
-               set_user() {
-                   admin
-                       .post('/example/set_user', {
-                           name: this.name,
-                           age: this.age,
-                           sex: this.sex,
-                           identify: this.identify
-                       })
-                       .then(response => {
-                           alert("success");
-                        })
-                       .catch();
-               }
-           }
+            el: '#set_user',
+            data: {
+                name: '',
+                age: 0,
+                sex: '',
+                identify: ''
+            },
+            methods: {
+                set_user() {
+                    admin
+                    .post('example/set_user', {
+                        name: this.name,
+                        age: this.age,
+                        sex: this.sex,
+                        identify: this.identify
+                    })
+                    .then(response => {
+                        if(!check(response)) alert('获取用户信息时后台数据返回异常');
+                        if (response.data.success === false) alert(response.data.message);
+                        alert("success");
+                    })
+                    .catch(function (error) { // 请求失败处理
+                        console.log(error);
+                    });
+                }
+            }
         });
+
     </script>
 </body>
 </html>

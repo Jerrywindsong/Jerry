@@ -15,3 +15,16 @@ def get_user():
             'identify': 'student'
         }
     }
+
+@example.route('set_user', methods=['POST'])
+def set_user():
+
+    json_param = request.get_json()
+    print(json_param)
+    print(type(json_param))
+    #dth(json_param) #做一些数据增删改查操作 
+    return {
+        'success': True,
+        'message': '',
+        'data': {}
+    }

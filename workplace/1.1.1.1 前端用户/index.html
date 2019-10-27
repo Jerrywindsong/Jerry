@@ -31,6 +31,15 @@
         </tr>
     </table>
 
+    <div id="set_book">
+        <input type="text" v-model="name">
+        <input type="text" v-model="price">
+        <input type="text" v-model="author">
+        <input type="text" v-model="brief">
+
+        <button @click="set_book()">提交</button>
+    </div>
+
     <script>
         var vm = new Vue({
             el: '#get_user',
@@ -51,6 +60,30 @@
             }
         });
 
+        var vm2 = new Vue({
+           el: '#set_book',
+           data: {
+               name: '',
+               price: 0,
+               author: '',
+               brief: ''
+           },
+           methods: {
+               set_book() {
+                   admin
+                       .post('/example/set_book', {
+                           name: this.name,
+                           price: this.price,
+                           author: this.author,
+                           brief: this.brief
+                       })
+                       .then(response => {
+                           alert("success");
+                        })
+                       .catch();
+               }
+           }
+        });
     </script>
 </body>
 </html>

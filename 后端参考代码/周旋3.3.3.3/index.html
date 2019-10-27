@@ -9,35 +9,34 @@
     <script src="https://cdn.staticfile.org/axios/0.18.0/axios.min.js"></script>
     <script src="config.js"></script>
     <script src="common.js"></script>
-    <title>个人信息</title>
+    <title>书籍信息</title>
 </head>
 <body>
     <table border="1" id="get_user">
         <tr>
-        <td>姓名</td>
+        <td>书名</td>
         <td>{{info.name}}</td>
         </tr>
         <tr>
-        <td>年龄</td>
-        <td>{{info.age}}</td>
+        <td>价格</td>
+        <td>{{info.price}}</td>
         </tr>
         <tr>
-        <td>性别</td>
-        <td>{{info.sex}}</td>
+        <td>作者</td>
+        <td>{{info.author}}</td>
         </tr>
         <tr>
-        <td>身份</td>
-        <td>{{info.identify}}</td>
+        <td>简介</td>
+        <td>{{info.brief}}</td>
         </tr>
     </table>
 
-    <div id="set_user">
+    <div id="add_book">
         <input type="text" v-model="name">
-        <input type="text" v-model="age">
-        <input type="text" v-model="sex">
-        <input type="text" v-model="identify">
-
-        <button @click="set_user()">提交</button>
+        <input type="text" v-model="price">
+        <input type="text" v-model="author">
+        <input type="text" v-model="brief">
+        <button @click="add_book()">提交</button>
     </div>
 
     <script>
@@ -48,9 +47,9 @@
             },
             mounted () {
                 admin
-                    .get('example/get_user')
+                    .get('example/get_book')
                     .then(response => {
-                        if(!check(response)) alert('获取用户信息时后台数据返回异常');
+                        if(!check(response)) alert('获取书籍信息时后台数据返回异常');
                         if (response.data.success === false) alert(response.data.message)
                         this.info = response.data.data;
                     })
@@ -61,29 +60,30 @@
         });
 
         var vm2 = new Vue({
-           el: '#set_user',
+           el: '#add_book',
            data: {
                name: '',
-               age: 0,
-               sex: '',
-               identify: ''
+               price: 0,
+               author: '',
+               brief: ''
            },
            methods: {
-               set_user() {
+               add_book() {
                    admin
-                       .post('/example/set_user', {
+                       .post('/example/add_book', {
                            name: this.name,
-                           age: this.age,
-                           sex: this.sex,
-                           identify: this.identify
+                           price: this.price,
+                           author: this.author,
+                           brief: this.brief
                        })
                        .then(response => {
-                           alert("success");
-                        })
+                           alert('success');
+                       })
                        .catch();
                }
            }
         });
+
     </script>
 </body>
 </html>
